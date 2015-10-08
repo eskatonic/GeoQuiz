@@ -17,6 +17,7 @@ public class QuizActivity extends AppCompatActivity
     private Button mTrueButton;
     private Button mFalseButton;
     private Button mNextButton;
+    private Button mPreviousButton;
     private TextView mQuestionTextView;
 
     private void updateQuestion()
@@ -103,6 +104,21 @@ public class QuizActivity extends AppCompatActivity
             public void onClick(View v)
             {
                 mCurrentIndex = (mCurrentIndex + 1) % mQuestionBank.length;
+                //int question = mQuestionBank[mCurrentIndex].getTextResId();
+                //mQuestionTextView.setText(question);
+                updateQuestion();
+            }
+        });
+
+        // Currently the Previous Button errors out if you are on the first question in the array.
+        // WBM - 10/7/2015
+        mPreviousButton = (Button) findViewById(R.id.previous_button);
+        mPreviousButton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                mCurrentIndex = (mCurrentIndex - 1) % mQuestionBank.length;
                 //int question = mQuestionBank[mCurrentIndex].getTextResId();
                 //mQuestionTextView.setText(question);
                 updateQuestion();
